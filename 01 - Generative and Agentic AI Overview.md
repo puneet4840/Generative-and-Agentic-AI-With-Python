@@ -7,7 +7,7 @@
 
 ### 1. Foundation Models (The Core)
 
-Ye base hai jahan se sab shuru hota hai. Inhe padhne ki zaroorat nahi, bas inka farak samajhna hai:
+Ye base hai jahan se sab shuru hota hai:
 
 **1 - LLMs (Large Language Models)**: Text generate karne ke liye (GPT-4, Claude, Llama 3).
 
