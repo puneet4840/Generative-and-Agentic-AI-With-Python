@@ -699,3 +699,10 @@ Use karo:
 Simple line:
 - "Jahan data samajhna hai, wahan VAE".
 
+<br>
+<br>
+<br>
+
+## Agentic AI Kya Hoti Hai?
+
+Agentic AI, Generative AI ka advance version hai.
