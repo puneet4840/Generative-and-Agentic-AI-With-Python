@@ -1,7 +1,5 @@
 # Overview of Generative and Agentic AI
 
-<br>
-
 ## Generative AI Architecture Hierarchy
 
 ### 1. Foundation Models (The Core)
