@@ -706,3 +706,242 @@ Simple line:
 ## Agentic AI Kya Hoti Hai?
 
 Agentic AI, Generative AI ka advance version hai.
+
+Agentic AI ko ese samjho jaise ek software jo AI ka use karta hai aur aapke instruction follow karta hai.
+
+Agentic AI wo AI hoti hai jo sirf response generate nahi karti (jaise normal LLM), balki khud decision leti hai, actions plan karti hai, aur goals achieve karne ke liye kaam karti hai. Matlab ek agent jo saare kaam karta hai.
+
+<br>
+
+### Pehle basic samajh lo: Normal AI vs Agentic AI
+
+**Normal AI (LLM-based, jaise ChatGPT)**:
+- Tumne question pucha → AI ne answer diya.
+- Bas ek response, no action.
+
+Example:
+- Tum: "Weather kya hai?"
+- AI: "Aaj 30°C hai".
+
+AI ne sirf bataya, kuch kiya nahi. To ye Generative AI ka example hai. Jo sirf tumko content generate karke de deta hai.
+
+<br>
+
+**Agentic AI**:
+
+Agentic AI ek software jo sirf content generate hi nhi karta balki un jo usne generate kiya hai un actions ko perform bhi karta hai.
+
+Tum goal dete ho → AI khud steps banati hai → tools use karti hai → result laati hai.
+
+Example:
+
+- Tum: "Mujhe weekend trip plan karke de".
+- Agentic AI:
+  - Location search karegi.
+  - Weather check karegi.
+  - Hotels compare karegi.
+  - Budget optimize karegi.
+  - Final itinerary banayegi.
+ 
+Yahan AI kaam kar rahi hai, sirf answer nahi de rahi.
+
+<br>
+<br>
+
+### Agentic AI ka core concept: "AI Agent"
+
+Agentic AI ka main building block hota hai → AI Agent.
+
+AI Agent = ek system hai ya ek software hai jo:
+- Environment ko observe karta hai.
+- Decision leta hai.
+- Actions perform karta hai.
+- Goal achieve karta hai.
+
+<br>
+<br>
+
+### Agentic AI ka internal working
+
+Agentic AI ka process kuch aisa hota hai:
+
+**1 - Goal (Objective)**:
+
+Sabse pehle AI ko ek goal diya jata hai.
+
+Example:
+- "Book cheapest flight from Delhi to Mumbai".
+
+<br>
+
+**2 - Planning (Sochna aur todna)**:
+
+AI goal ko small steps mein todti hai.
+
+Example:
+- Step 1: Flights search karo.
+- Step 2: Prices compare karo.
+- Step 3: Cheapest choose karo.
+- Step 4: Booking karo.
+
+<br>
+
+**3 - Tool Usage**:
+
+Agentic AI sirf text generate nahi karti, balki tools use karti hai:
+- APIs.
+- Databases.
+- Browsers.
+- Scripts.
+
+Example:
+- Flight API call karna.
+- Payment gateway use karna.
+
+<br>
+
+**4 - Execution**:
+
+AI har step execute karti hai.
+
+<br>
+
+**5 - Feedback Loop**:
+
+Agar kuch galat ho gaya → AI dubara try karegi
+
+Example:
+- Flight unavailable → dusra option search.
+
+<br>
+
+**6 - Memory**:
+
+Agentic AI context ya past actions yaad rakh sakti hai.
+
+Example:
+- Tumhara budget ya preferences yaad rakhna.
+
+<br>
+<br>
+
+### Ek Real Flow samjho
+
+Tum bolte ho:
+- "Mujhe ek blog likh ke publish kar do AI par".
+
+Agentic AI kya karegi:
+- Topic research karegi.
+- Content likhegi.
+- Grammar check karegi.
+- Images generate karegi.
+- Website pe publish karegi.
+- SEO optimize karegi.
+
+Ye sab ek automated workflow hai.
+
+<br>
+<br>
+
+### Architecture
+
+Agentic AI generally in components se banti hai:
+
+**1. LLM (Brain)**:
+- Decision making
+- Reasoning
+- Planning
+
+Example: GPT models.
+
+<br>
+
+**2. Tools / APIs**:
+- External actions perform karne ke liye.
+
+<br>
+
+**3. Memory**:
+- Short-term (current task).
+- Long-term (history).
+
+<br>
+
+**4. Orchestrator / Controller**:
+- Flow control karta hai.
+- Decide karta hai next step kya hoga.
+
+<br>
+
+**5. Environment**:
+- Real world ya digital system jahan agent kaam karta hai.
+
+<br>
+<br>
+
+### Agent Types
+
+**1 - Reactive Agent**:
+- No memory.
+- Bas current input pe react karta hai.
+
+Example: Simple chatbot.
+
+<br>
+
+**2 - Deliberative Agent**:
+- Planning karta hai.
+- Future steps sochta hai.
+
+<br>
+
+**3 - Learning Agent**:
+- Experience se improve hota hai.
+
+<br>
+
+**4 - Multi-Agent System**:
+- Multiple agents milke kaam karte hain.
+
+Example:
+- Ek agent research karega.
+- Ek writing karega.
+- Ek review karega.
+
+<br>
+<br>
+
+### Real-world Examples
+
+**1. Autonomous Customer Support**:
+- User query handle karna.
+- Tickets create karna.
+- Resolution dena.
+
+<br>
+
+**2. E-commerce Shopping Agent**:
+- Product search.
+- Price compare.
+- Order place.
+
+<br>
+
+**3. DevOps Agent**:
+
+Agentic AI:
+- Logs analyze karega.
+- Errors detect karega.
+- Fix suggest karega.
+- Deployment trigger karega.
+
+Future:
+- "Self-healing infrastructure".
+
+<br>
+
+**4. Data Analysis Agent**:
+- Data fetch karega.
+- Analyze karega.
+- Insights generate karega.
+
