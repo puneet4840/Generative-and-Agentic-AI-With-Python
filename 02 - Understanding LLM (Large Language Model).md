@@ -32,3 +32,31 @@ LLM guess karega:
 
 Ye guess random nahi hota — ye **probability + training data** pe based hota hai.
 
+<br>
+<br>
+
+### History of LLM
+
+Actual kahani shuru hoti hai 2017 se, jab google ke 8 scientists ne ek research paper nikala jiska naam tha ```Attention Is All You Need```.
+
+Is paper ka focus tha **Attention Mechanism** par.
+
+Ye paper kehta tha ki ```Ek word ko sentence ke ander other words par relation rakhe```.
+
+Iska matlab hai ki LLM jab bhi koi word generate kare to vo sentence ke ander jo word LLM ne pehle generate kar diye hain un words se relate kare. Esa nhi ho na chiaye ki LLM jo word generate karne wala hai vo poore sentence mein kisi word se relate na kar.
+
+Example:
+```
+Ram is a boy. He is a good in study.
+```
+
+Ye ```He``` word ```Ram``` se relate kar rha hai.
+
+
+Example:
+```
+"The server crashed because it was overloaded"
+```
+
+Yahan ``` it``` word ```server``` se relate kar rha hai.
+
