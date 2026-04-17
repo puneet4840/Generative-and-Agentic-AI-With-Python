@@ -1,7 +1,6 @@
 # Overview of Generative and Agentic AI
 
 <br>
-<br>
 
 ## Generative AI Architecture Hierarchy
 
@@ -47,7 +46,6 @@ Tumne "Agentic AI" ka zikr kiya tha. Ye GenAI ki sabse advanced stage hai. Iska 
 - Tool Use: AI khud API call karta hai ya internet search karta hai.
 - Reflection: AI check karta hai ki kya usne sahi kiya? Agar nahi, toh wapas try karta hai.
 
-<br>
 <br>
 <br>
 
