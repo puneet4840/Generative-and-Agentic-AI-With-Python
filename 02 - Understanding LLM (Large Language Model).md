@@ -2,9 +2,11 @@
 
 ### LLM (Large Language Model) kya hai?
 
-LLM (Large Language Model) ek AI model hai jo human language ko samjta hai aur generate karta hai.
+LLM (Large Language Model) ek AI model hai jo human language ko samjta hai aur generate karta hai. 
 
-Ye ek AI model hota hai jo human language ko samajh bhi sakta hai aur generate bhi kar sakta hai. 
+Matlab human ek text input LLM ko deta hai aur LLM us text ko process karke uska output text form mein deta hai. Matlab LLM text generate karta hai.
+
+Ye deep learning ke saath neural networks ka use karke text ko generate karta hai jo human ki tarah feel hota hai.
 
 Generate AI 4 types ke hote hain, usme se ek type hota hai transformer, LLM models transformer technique ka use karte hain.
 
