@@ -46,7 +46,7 @@ Tumne "Agentic AI" ka zikr kiya tha. Ye GenAI ki sabse advanced stage hai. Iska 
 <br>
 <br>
 
-## Hostory of AI
+## History of AI
 
 <br>
 
