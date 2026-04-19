@@ -114,7 +114,20 @@ Model bhi same karta hai — important words pe focus karta hai.
 
 Jo bhi tum input transformer model ko dete ho, us input ko token mein break kiya jata hai.
 
-Token ka matlab hai ek particular word, matlab sentence ko ek ek single word mein break kar dete hain.
+Dekho cumputer sirf numbers hi samjh sakta hai. 
+
+To token ka matlab hai words ya characters ko ek number assign karna. 
+
+Jaise ```My name is Puneet```, 
+```
+My=1
+name=2
+is=3
+Puneet=4.
+```
+Is tarike se words ya characters ko number assign karna hi token hota hai.
+
+To in numbers ko transformer samjhta hai.
 
 Example:
 
@@ -122,9 +135,10 @@ Sentence:
 - “Hey There”
 
 
-Transformer pehle input sentence ko token mein break karega.
+Transformer pehle input sentence ko token mein break karega, words ko number assign karega.
 ```
-[Hey] [There]
+[Hey]=10
+[There]=20
 ```
 
 Fir **Autoregressive Language Modeling** technique se next word predict karta hai. 
@@ -151,3 +165,8 @@ Explanation:
 - Fir is output ```Hey There I am``` ko next iteration mein as a input lega, token mein break karega aur next word predict karega.
 
 Ese ye transformer model kaam karta hai, aur saare LLMs bhi isi model pe based hote hain isi tarah kaam karete hain.
+
+<br>
+<br>
+
+### LLM Kaise Work Karta Hai?
