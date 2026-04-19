@@ -166,6 +166,8 @@ Explanation:
 
 Ese ye transformer model kaam karta hai, aur saare LLMs bhi isi model pe based hote hain isi tarah kaam karete hain.
 
+User ko direct token ke form mein output nahi dikhta hai, User ko token de-tokenize karke matlab fir token se word ya character mein tranform karke output dikhaya jata hai.
+
 <br>
 <br>
 
