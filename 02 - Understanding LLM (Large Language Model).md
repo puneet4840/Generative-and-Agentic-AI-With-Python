@@ -107,4 +107,24 @@ Ye hi hai Attention.
 
 Model bhi same karta hai — important words pe focus karta hai.
 
+<br>
+<br>
 
+### Transformer Model kaam kaise karta hai?
+
+Jo bhi tum input transformer model ko dete ho, us input ko token mein break kiya jata hai.
+
+Token ka matlab hai ek particular word, matlab sentence ko ek ek single word mein break kar dete hain.
+
+Example:
+
+Sentence:
+- “Hey There”
+
+
+Transformer pehle input sentence ko token mein break karega.
+```
+[Hey] [There]
+```
+
+<img src="https://drive.google.com/uc?export=view&id=1hsoMRXtFMPcRfmAL6hutb2oMWlqbQHPo" width="650" height="380">
