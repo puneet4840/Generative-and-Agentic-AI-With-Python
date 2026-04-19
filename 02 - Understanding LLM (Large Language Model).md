@@ -8,9 +8,9 @@ Matlab human ek text input LLM ko deta hai aur LLM us text ko process karke uska
 
 Ye deep learning ke saath neural networks ka use karke text ko generate karta hai jo human ki tarah feel hota hai.
 
-- Large: Isse bohot bade data (internet, books, articles) par train kiya jata hai.
-- Language: Yeh human language (Hindi, English, etc.) ko samajhta hai.
-- Model: Yeh ek AI neural network hai jo predict karta hai ki sentence mein agla shabd kya hona chahiye.
+- **Large**: Isse bohot bade data (internet, books, articles) par train kiya jata hai.
+- **Language**: Yeh human language (Hindi, English, etc.) ko samajhta hai.
+- **Model**: Yeh ek AI neural network hai jo predict karta hai ki sentence mein agla shabd kya hona chahiye.
 
 Generate AI 4 types ke hote hain, usme se ek type hota hai transformer, LLM models transformer technique ka use karte hain.
 
@@ -47,7 +47,7 @@ Actual kahani shuru hoti hai 2017 se, jab google ke 8 scientists ne ek research 
 
 Is paper ka focus tha **Attention Mechanism** par.
 
-Ye paper kehta tha ki ```Ek word ko sentence ke ander other words par relation rakhe```.
+Ye paper kehta tha ki ```Ek word, sentence ke ander other words par relate kare```.
 
 Iska matlab hai ki LLM jab bhi koi word generate kare to vo sentence ke ander jo word LLM ne pehle generate kar diye hain un words se relate kare. Esa nhi ho na chiaye ki LLM jo word generate karne wala hai vo poore sentence mein kisi word se relate na kar.
 
