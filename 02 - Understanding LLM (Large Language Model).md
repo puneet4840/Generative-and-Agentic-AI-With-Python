@@ -127,4 +127,4 @@ Transformer pehle input sentence ko token mein break karega.
 [Hey] [There]
 ```
 
-<img src="https://drive.google.com/uc?export=view&id=1hsoMRXtFMPcRfmAL6hutb2oMWlqbQHPo" width="650" height="380">
+<img src="https://drive.google.com/uc?export=view&id=1hsoMRXtFMPcRfmAL6hutb2oMWlqbQHPo" width="620" height="340">
