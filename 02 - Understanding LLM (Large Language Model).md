@@ -147,7 +147,7 @@ Explanation:
 - Fir har token as a input lega.
 - Ab ```Autoregressive Language Modeling``` technique se next word ko predict karega. Jaise output aaya ```I```.
 - Ab is output ko input sentence mein add karega jaise ```Hey There I```. Ab is complete sentence ko as a input dekhega.
-- Fir inko tokens mein break karega aur ```Autoregressive Language Modeling``` karke next word predict karega. Jaie ab output aaya ``` good```.
-- Fir is output ```Hey There I am good.``` ko next iteration mein as a input lega, token mein break karega aur next word predict karega.
+- Fir inko tokens mein break karega aur ```Autoregressive Language Modeling``` karke next word predict karega. Jaie ab output aaya ```am```.
+- Fir is output ```Hey There I am``` ko next iteration mein as a input lega, token mein break karega aur next word predict karega.
 
 Ese ye transformer model kaam karta hai, aur saare LLMs bhi isi model pe based hote hain isi tarah kaam karete hain.
