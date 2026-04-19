@@ -33,7 +33,6 @@ Agar tumhe directly coding/implementation karni hai, toh ye 3 pillars hain:
 - Kya seekhna hai? LangChain ya LlamaIndex. Ye sabse important hain.
 
 <br>
-<br>
 
 ## Building Towards Agentic AI
 
@@ -300,74 +299,19 @@ Generator (G):
 Discriminator (D):
 - Ye Judge karta hai ki jo data generator ne banaya hai kya vo real hai ya fake.
 
+<br>
 
-**GAN ka Core Idea (Game Theory Based Learning)**:
+**Ye kaam kaise karta hai? (The Process)**:
 
-GAN actually ek minimax game solve karta hai.
-
-Isko mathematically aise likhte hain:
-```
-Gmin​Dmax​V(D,G)
-```
-
-Meaning:
-- Discriminator maximize kare (real vs fake ko sahi identify kare).
-- Generator minimize kare (discriminator ko fool kare).
+- Shuruat: Generator ne ek random nakli image banayi.
+- Checking: Discriminator ne usse dekha aur asli images se compare kiya. Usne Generator ko pakad liya aur bola— "Ye nakli hai, asli photo mein toh aankhein aisi hoti hain!"
+- Learning: Generator ne apni galti sudhari. Agli baar usne aur behtar photo banayi.
+- Battle: Ab Discriminator ko aur mehnat karni padegi asli-nakli mein fark karne ke liye. Aise hi dono ek-doosre ko train karte hain.
+- Final Result: Ek waqt aisa aata hai jab Generator itna mahir ho jata hai ki wo jo photo banata hai, Discriminator (aur hum insaan bhi) pehchan nahi paate ki wo asli hai ya AI ne banayi hai.
 
 <br>
 
-**GAN ka Working Step-by-Step**:
-
-Step 1: Random Noise Input:
-
-Generator ko ek random vector diya jata hai:
-- Isko bolte hain latent vector (z).
-
-Example:
-```
-z = [0.2, -1.3, 0.7, ...]
-```
-
-Step 2: Generator Fake Data Banata Hai:
-
-Generator:
-- Noise ko input leta hai.
-- Ek fake image create karta hai.
-
-Example:
-- Fake human face.
-- Fake cat image.
-
-Step 3: Real + Fake Data Discriminator ko diya jata hai:
-
-Discriminator ko 2 cheeze milti hain:
-- Real images (dataset se).
-- Fake images (generator se).
-
-Step 4: Discriminator Decide karta hai:
-
-Discriminator output deta hai:
-- 1 = Real
-- 0 = Fake
-
-Step 5: Loss Calculate hota hai
-- Agar discriminator galti karta hai → usko train kiya jata hai.
-- Agar generator pakda jata hai → usko train kiya jata hai.
-
-Step 6: Backpropagation (Dono Train hote hain):
-- Generator directly real data nahi dekhta.
-- Wo sirf discriminator ke feedback se seekhta hai.
-
-Step 7: Iteration (Again & Again)
-
-Ye process thousands of times repeat hota hai.
-
-End result:
-- Generator itna powerful ho jata hai ki fake aur real mein difference karna mushkil ho jata hai.
-
-<br>
-
-Real-Life Examples of GAN:
+**Real-Life Examples of GAN**:
 - Fake Human Faces.
 - Image-to-Image Translation.
 - Deepfakes.
@@ -376,20 +320,25 @@ Real-Life Examples of GAN:
 
 <br>
 
-GAN ke Problems:
+**GAN ke Problems**:
 
-1 - Mode Collapse:
-  - Generator same type output baar-baar deta hai.
+1. Mode Collapse (Ek hi tarah ka output):
 
-Example:
-- Har baar same face generate ho raha.
+Ye GANs ki sabse badi bimari hai. Kabhi-kabhi Generator "smart" banne ke chakkar mein shortcut le leta hai. Woh poora data seekhne ke bajaye sirf ek hi tarah ki image (jo Discriminator ko pasand aa rahi ho) baar-baar banane lagta hai.
 
-2 - Training Instability:
-- Training unstable hoti hai.
-- Kabhi generator strong, kabhi discriminator strong.
+Example: Agar aapne model ko 0 se 9 tak ke digits banane ko kaha, toh ho sakta hai wo sirf '1' hi banaye kyunki usse pata hai ki '1' banana sabse asaan hai aur Discriminator usse maan lega. Isse variety khatam ho jati hai.
 
-3 - Vanishing Gradient:
-- Generator ko feedback milna band ho jata hai
+2. Training Instability (Balance banana mushkil):
+
+Generator aur Discriminator ka muqabla "Kante ki Takkar" honi chahiye.
+
+Agar Discriminator zyada smart ho gaya, toh wo har baar Generator ko "fail" kar dega. Generator itni jaldi seekh nahi payega aur haar maan lega (Gradient Vanishing).
+Agar Generator zyada smart ho gaya, toh wo kachra data banakar bhi Discriminator ko ullu bana dega.
+In dono ka balance (Nash Equilibrium) banana bahut sar-dard wala kaam hai.
+
+4. Bahut zyada Computational Power
+
+GANs ko train karne ke liye bahut mehnge GPUs aur bahut zyada waqt lagta hai. Agar aapke paas achha hardware nahi hai, toh ek high-quality GAN model train karne mein kayi din ya hafte lag sakte hain.
 
 <br>
 <br>
@@ -704,6 +653,8 @@ Simple line:
 Agentic AI, Generative AI ka advance version hai.
 
 Agentic AI ko ese samjho jaise ek software jo AI ka use karta hai aur aapke instruction follow karta hai.
+
+Agentic AI, passive AI se alag hai. Passive AI, jaise ChatGPT ya Gemini, sirf sawaalon ka jawaab dete hain. Agentic AI ek "agent" ki tarah kaam karta hai. Is agent ko ek goal diya jaata hai, aur wo us goal ko pura karne ke liye khud plan banata hai aur actions leta hai.
 
 Agentic AI wo AI hoti hai jo sirf response generate nahi karti (jaise normal LLM), balki khud decision leti hai, actions plan karti hai, aur goals achieve karne ke liye kaam karti hai. Matlab ek agent jo saare kaam karta hai.
 
