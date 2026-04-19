@@ -127,4 +127,27 @@ Transformer pehle input sentence ko token mein break karega.
 [Hey] [There]
 ```
 
+Fir **Autoregressive Language Modeling** technique se next word predict karta hai. 
+
+Ab jo bhi output prediction mein aata hai usko complete sentence mein add karke as a input use karta hai aur next word predict karta hai.
+
+Ye process har baar repeat hoti hai aur text generate hota jata hai.
+
+Vaise iske peeche kaami process hoti hai, humne yaha pe ye short mein samjhi hai, aage hum ise detail mein dekhenge.
+
+<br>
+
 <img src="https://drive.google.com/uc?export=view&id=1hsoMRXtFMPcRfmAL6hutb2oMWlqbQHPo" width="620" height="340">
+
+<br>
+
+Explanation:
+- Suppose aapne kisi bhi LLM model ko ```Hey There``` likha as a input/
+- Ab LLM model is sentence ko tokens mein divide karega, token ka matlab hai sentence ko ek ek single word mein break karega.
+- Fir har token as a input lega.
+- Ab ```Autoregressive Language Modeling``` technique se next word ko predict karega. Jaise output aaya ```I```.
+- Ab is output ko input sentence mein add karega jaise ```Hey There I```. Ab is complete sentence ko as a input dekhega.
+- Fir inko tokens mein break karega aur ```Autoregressive Language Modeling``` karke next word predict karega. Jaie ab output aaya ``` good```.
+- Fir is output ```Hey There I am good.``` ko next iteration mein as a input lega, token mein break karega aur next word predict karega.
+
+Ese ye transformer model kaam karta hai, aur saare LLMs bhi isi model pe based hote hain isi tarah kaam karete hain.
