@@ -114,20 +114,14 @@ Model bhi same karta hai — important words pe focus karta hai.
 
 Jo bhi tum input transformer model ko dete ho, us input ko token mein break kiya jata hai.
 
-Dekho cumputer sirf numbers hi samjh sakta hai. 
+Token ka matlab hai ek sentence ko chote chote parts mein break karna.
 
-To token ka matlab hai words ya characters ko ek number assign karna. 
-
-Jaise ```My name is Puneet```, 
+To token ka matlab hai jaise ek sentence "I love ChatGPT", Isko small parts mein break karna:
 ```
-My=1
-name=2
-is=3
-Puneet=4.
+[I] [Love] [Chat] [GPT]
 ```
-Is tarike se words ya characters ko number assign karna hi token hota hai.
+Isi ko tokenization bolte hain. Words mein break karna.
 
-To in numbers ko transformer samjhta hai.
 
 Example:
 
@@ -172,3 +166,121 @@ User ko direct token ke form mein output nahi dikhta hai, User ko token de-token
 <br>
 
 ### LLM Kaise Work Karta Hai?
+
+**LLM Kya hota hai**>
+
+LLM (Large Language Model) ka main kaam hai: “given context ke basis pe next word predict karna”.
+
+LLM ka kaam kai next word predict karna.
+
+Example:
+```
+Input: "I love to drink"
+```
+Model guess karega: ```"tea"```, ```"coffee"```, ```"water"```.
+
+Lekin yeh sirf surface level baat hai.
+
+<br>
+
+**Real mein kya hota hai?**
+
+Jab tum likhte ho:
+```
+I love to drink
+```
+Model ke dimaag mein yeh hota hai:
+- Yeh sentence incomplete hai.
+- Next word kya koi liquid hoga.
+- Grammar ke hisaab se noun aayega.
+- Context ke hisaab se "tea", "coffee" ya "water" ho sakta hai.
+
+Matlab model sirf random guess nahi karta, balki:
+- language rules samajhta hai (grammar).
+- meaning samajhta hai (semantics).
+- context ko track karta hai.
+- long-distance relations samajhta hai.
+
+Yeh sab kaise possible hua?
+
+Yeh sab possible hua ek architecture ki wajah se: ```Transformer```.
+
+<br>
+
+Ab hum aage ek ek step mein samjhenge ki model kaise kaam karta hai.
+
+<br>
+<br>
+
+Jab tum kisi LLM ko kuch bhi text input mein dete ho to ye steps follow hote hain.
+
+### Step-1: Tokenization (Text → Tokens):
+
+Is step mein ek sentence ko alag-alag words mein break kiya jata hai.
+
+Token ka matlab hai ek sentence ko chote chote parts mein break karna. Is process ko tokenization kehte hain.
+
+Problem kya hai?
+
+Computer directly text ko samajh nahi sakta:
+```
+"Hello world"
+```
+Computer ke liye yeh sirf characters ka sequence hai.
+
+Solution: **Tokenization**
+
+Text ko tod diya jata hai chhote pieces me, Jinko hum tokens kehte hain.
+
+**Example**:
+
+Sentence:
+```"ChatGPT is amazing"```.
+
+Tokenization ho sakta hai:
+```
+["Chat", "G", "PT", " is", " amazing"]
+```
+Ya:
+```
+["ChatGPT", " is", " amazing"]
+```
+
+<br>
+
+Yeh tokenization kabhi kabhi ese uper jaisea different kyu hota hai?
+
+Kyuki model use karta hai: **Subword tokenization (BPE / WordPiece)**.
+
+Reason:
+- New words handle karne ke liye.
+- Rare words break karne ke liye.
+
+**Intuition**:
+
+Socho tum English seekh rahe ho:
+- Tum words yaad karte ho.
+- Lekin agar unknown word aaye:
+  - tum usse tod kar samajhte ho
+
+Same LLM bhi karta hai.
+
+<br>
+<br>
+
+### Step-2: Tokens → Numbers (Embedding)
+
+Is step mein token ko ek number assign ya map kiya jata hai, jisko embedding kehte hain.
+
+Problem:
+- Computer ko sirf numbers samajh aate hain.
+
+Solution: **Embedding**
+
+Har token ko ek vector (numbers ka list) diya jata hai.
+
+Example:
+```
+"dog" → [0.2, -0.5, 0.8, 0.1, ...]
+"cat" → [0.25, -0.45, 0.75, 0.12, ...]
+```
