@@ -284,3 +284,10 @@ Example:
 "dog" → [0.2, -0.5, 0.8, 0.1, ...]
 "cat" → [0.25, -0.45, 0.75, 0.12, ...]
 ```
+
+**Yeh numbers random nahi hote**:
+
+Training ke time, Model learn karta hai:
+- dog aur cat similar hain.
+- dog aur car different hain.
+
