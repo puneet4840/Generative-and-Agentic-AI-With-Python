@@ -664,8 +664,9 @@ Model decide karta hai:
 <img src="https://drive.google.com/uc?export=view&id=1XiIapHetAft5QmYiLxapGV-wu7PJ3tDf" width="820" height="490">
 
 <br>
-**2 - **
-<img src="https://drive.google.com/uc?export=view&id=1gR2VHC7Ayk1bX2TeD5M_MBKv7QCuVsAE" width="820" height="340">
+
+**2 - Embedding**
+<img src="https://drive.google.com/uc?export=view&id=1PcsdzsX_QDBJQlaOv9PXXjw_5FV7RTFX" width="820" height="490">
 
 <br>
 <br>
