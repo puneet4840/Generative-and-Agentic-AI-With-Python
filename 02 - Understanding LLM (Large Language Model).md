@@ -609,4 +609,4 @@ Intuition:
 
 Formula:
 
-<img src="https://drive.google.com/uc?export=view&id=1vIkzXqwlTFbBb5ENe5gqhZoiwO9u-gpz" width="620" height="340">
+<img src="https://drive.google.com/uc?export=view&id=1vIkzXqwlTFbBb5ENe5gqhZoiwO9u-gpz" width="420" height="140">
