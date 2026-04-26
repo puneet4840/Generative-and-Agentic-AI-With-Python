@@ -391,7 +391,7 @@ Problem: Text neural network mein directly nahi jaata. Neural networks sirf floa
 
 Solution: Har word/token ko ek fixed-size number vector mein convert karo — yahi embedding hai.
 
-<img src="https://drive.google.com/uc?export=view&id=1VjrDyypuiIaGy1LJyt4ImVUx9q0MjNM-" width="620" height="440">
+<img src="https://drive.google.com/uc?export=view&id=1VjrDyypuiIaGy1LJyt4ImVUx9q0MjNM-" width="620" height="400">
 
 <br>
 
