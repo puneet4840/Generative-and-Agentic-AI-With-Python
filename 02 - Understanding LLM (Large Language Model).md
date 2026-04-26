@@ -446,7 +446,11 @@ Structure:
 - Har column = ek dimension (ek number).
 - Har cell = us word ke us dimension ka value (floating point number, usually -1 se +1 ke beech).
 
-<img src="https://drive.google.com/uc?export=view&id=1ddtih8eO1EI1zP4A4EGK16TFhyBNq9ho" width="620" height="340">
+<br>
+
+<img src="https://drive.google.com/uc?export=view&id=1ddtih8eO1EI1zP4A4EGK16TFhyBNq9ho" width="620" height="440">
+
+<br>
 
 ```
 Embedding Matrix E — shape: [50,000 words × 768 dimensions]
