@@ -268,7 +268,86 @@ Same LLM bhi karta hai.
 <br>
 <br>
 
-### Step-2: Tokens → Numbers (Embedding)
+### Step-2: Token ID Mapping
+
+Is step mein tokens ko ek ID yaani ek number assign kiya jata hai.
+
+**Problem kya hai?**:
+
+Neural networks sirf numbers samajhte hain, text nahi. Toh pehle har word/subword ko ek unique number (ID) dena padta hai.
+
+**Explanation**:
+
+Jab kisi LLM model ko train kiya jata hai to uski training se pehle ek vocabulary banai jaati hai yaani words ki ek dictionary, jisme har unique token ko ek ID assign hoti hai:
+```
+"hello"  → 15496
+"world"  → 995
+"!"      → 0
+" the"   → 262
+```
+
+GPT-2 ki vocabulary mein ~50,000 tokens hain. LLaMA-3 mein ~128,000.
+
+Ye vocabulary har model ki alag hoti hai. Vocabulary se tum ese samjho, Model banane wale engineers pehle:
+- Books
+- Wikipedia
+- Websites
+- Code
+- Articles
+
+Ye sab lete hain aur Phir decide karte hain:
+
+Kaunse tokens vocabulary mein honge?
+
+To inhi sab chize se words ki ek dictionary banai jaati hai aur un words ko numbers bhi assign kar diye jaate hain.
+
+
+Vocabulary banne ke baad model train ho gya ab model ko jab input text diya jata hai to model text ko tokens mein break karta hai.
+
+Yahan: 
+
+| Algorithm                    | Used In       | Approach                      |
+| ---------------------------- | ------------- | ----------------------------- |
+| **BPE** (Byte Pair Encoding) | GPT series    | Frequent pairs merge karo     |
+| **WordPiece**                | BERT          | Probability-based merging     |
+| **SentencePiece**            | LLaMA, Gemini | Language-agnostic, byte-level |
+| **Tiktoken**                 | OpenAI models | Fast BPE implementation       |
+
+Jaise tokenizers use hote hain text ko tokens mein break karne ke liye. Ye tokenizers model ke hisaab se alag-alag ho sakte hain matlab koi model alag tokenizer use kar rha hoga aur koi model dusra tokenizer. Is liye har model ke tokens different ho sakte hain.
+
+Example:
+
+Word:
+```
+unbelievable
+```
+Tokenizer:
+```
+["un", "believ", "able"]
+```
+
+Ab text ko tokens mein break karne ke baad step aata hai **Token Id Mapping**. Is step mein vocabulary (dictionary) jo training se pehle create ki gayi thi vo use hoti hai aur Har token ka ID lookup hota hai, matlab vocabulary se token ka id liya jata hai aur token ko id assign kiya jata hai:
+
+Example:
+
+| Token    |   | Token ID |
+|----------|---|----------|
+| "Hello"  | → | 15496    |
+| " world" | → | 995      |
+| "!"      | → | 0        |
+
+Final ID list (model ka input)
+```
+15496  995  0
+```
+
+Yeh IDs ek simple integer array hain — yahan tak koi AI nahi, sirf dictionary lookup!
+
+
+<br>
+<br>
+
+### Step-3: Tokens → Numbers (Embedding)
 
 Is step mein token ko ek number assign ya map kiya jata hai, jisko embedding kehte hain.
 
@@ -285,9 +364,74 @@ Example:
 "cat" → [0.25, -0.45, 0.75, 0.12, ...]
 ```
 
-**Yeh numbers random nahi hote**:
+Uper **Token Id Mapping** step mein tokens ko Id assign hui thi, ab is step mein token id ko vector mein convert kiya jata hai.
 
-Training ke time, Model learn karta hai:
-- dog aur cat similar hain.
-- dog aur car different hain.
+<br>
+
+**Embedding kya hai?**:
+
+Socho tumhare paas ek shabd hai: "Raja". Computer ko yeh shabd seedha samajh nahi aata, kyunki computer sirf numbers samajhta hai. Toh hume "Raja" ko kuch aise convert karna hoga jisse computer use kar sake.
+
+Embedding basically ek shabd ya sentence ko ek list of numbers mein badal deta hai — jise hum "vector" kehte hain.
+
+Example:
+```
+"Raja" → [0.9, 0.1, 0.8, 0.2, 0.6, ...] (768 numbers ki list)
+"Rani" → [0.9, 0.9, 0.8, 0.8, 0.6, ...] (alag 768 numbers)
+"Kutta" → [0.0, 0.0, 0.1, 0.9, 0.1, ...] (bilkul alag numbers)
+```
+
+Iska magic yeh hai ki milte-julte matlab wale words ke vectors bhi milte-julte hote hain. "Raja" aur "Rani" ke vectors close hote hain, lekin "Kutta" ka vector dono se door hoga.
+
+<br>
+
+**Embedding kyu zaroori hai?**:
+
+Problem: Text neural network mein directly nahi jaata. Neural networks sirf floating point numbers pe kaam karte hain.
+
+Solution: Har word/token ko ek fixed-size number vector mein convert karo — yahi embedding hai.
+
+<img src="https://drive.google.com/uc?export=view&id=1VjrDyypuiIaGy1LJyt4ImVUx9q0MjNM-" width="620" height="340">
+
+<br>
+
+**Embedding kaise banta hai?**:
+
+Step 1: Tokenization:
+
+Sabse pehle text ko "tokens" mein todte hain. Token ek word bhi ho sakta hai, ya word ka ek hissa bhi.
+
+Example:
+```
+"Mujhe biryani pasand hai" 
+      ↓ Tokenize
+["Mujhe", "biryani", "pas", "  and", "hai"]
+```
+
+Har token ko ek integer ID milta hai ek lookup table se (vocabulary):
+```
+"Mujhe"   → 4521
+"biryani" → 8873
+"pasand"  → 2910
+"hai"     → 156
+```
+
+Step 2: Embedding Lookup (Token Embedding):
+
+Ab in integer IDs ko asli vectors mein badlo. Is kaam ke liye ek badi matrix hoti hai jise **Embedding Matrix** kehte hain.
+
+Imagine karo ek spreadsheet jisme:
+- Rows = vocabulary ke saare words (50,000+ words).
+- Columns = embedding dimensions (768 ya 4096).
+
+```
+Embedding Matrix (simplified, sirf 4 dimensions dikhaye):
+Word       | Dim1  | Dim2  | Dim3  | Dim4
+-----------+-------+-------+-------+------
+"Raja"     | 0.9   | 0.1   | 0.8   | 0.2
+"Rani"     | 0.9   | 0.9   | 0.8   | 0.8
+"Kutta"    | 0.0   | 0.0   | 0.1   | 0.9
+"Biryani"  | 0.3   | 0.7   | 0.0   | 0.1
+```
+Jab "Raja" aata hai → ID 4521 → matrix ki 4521vi row nikal lo → yeh hai "Raja" ka embedding!
 
