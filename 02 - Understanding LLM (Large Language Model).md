@@ -660,7 +660,7 @@ Model decide karta hai:
 
 **Ab shuru se samjho images ke through**
 
-<img src="https://drive.google.com/uc?export=view&id=1D0kykvVNdHxW-6qQLgygKdQRCMJAYFXk" width="820" height="240">
+<img src="https://drive.google.com/uc?export=view&id=1D0kykvVNdHxW-6qQLgygKdQRCMJAYFXk" width="820" height="290">
 
 
 
