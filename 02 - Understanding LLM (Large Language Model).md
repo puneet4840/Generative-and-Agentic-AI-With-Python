@@ -662,7 +662,9 @@ Model decide karta hai:
 
 <img src="https://drive.google.com/uc?export=view&id=1D0kykvVNdHxW-6qQLgygKdQRCMJAYFXk" width="820" height="290">
 
+<br>
 
+<img src="https://drive.google.com/uc?export=view&id=1gR2VHC7Ayk1bX2TeD5M_MBKv7QCuVsAE" width="820" height="290">
 
 <br>
 <br>
