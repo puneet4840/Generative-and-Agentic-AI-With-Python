@@ -572,9 +572,40 @@ Original Sinusoidal PE thoda outdated ho gaya. Modern models mein:
 <br>
 <br>
 
-### Step-5: Next Word Prediction (Transformer Model)
+### Step-5: Attention Mechanism: Next Word Prediction (Transformer Model)
 
 Is step mein model next word predict karta hai ki input ke baad next word kya aayega.
+
+LLM “sentence likhta” nahi hai. LLM har step pe bas yeh karta hai:
+- “Ab tak jo text mila hai, uske basis pe next token ki probability kya hai?”
+
+Example:
+
+Input:
+```
+"The sun rises in the"
+```
+Model ke paas options ho sakte hain:
+```
+east     → 0.92
+west     → 0.03
+morning  → 0.02
+sky      → 0.01
+```
+Highest probability:
+```
+east
+```
+Important:
+
+Model ko “fact” human jaise yaad nahi hota.
+- Usne training ke dauraan itne examples dekhe hote hain ki pattern strong ho jata hai:
+```
+"The sun rises in the east"
+```
+
+
+Example:
 
 Suppose tumne LLM ko ek text likhke diya ``` The Cat Sat on the```.
 
@@ -610,3 +641,30 @@ Intuition:
 Formula:
 
 <img src="https://drive.google.com/uc?export=view&id=1vIkzXqwlTFbBb5ENe5gqhZoiwO9u-gpz" width="420" height="70">
+
+Softmax — Scores ko probability me convert karna
+
+**Step-by-step**:
+- Q compare hota hai sab K ke saath.
+- similarity score milta hai.
+- softmax se normalize hota hai.
+- weights milte hain.
+- weighted sum of V nikalta hai.
+
+**Result**:
+
+Model decide karta hai:
+- kaunsa word kis pe kitna focus kare.
+
+<br>
+
+**Ab shuru se samjho images ke through**
+
+<img src="https://drive.google.com/uc?export=view&id=1D0kykvVNdHxW-6qQLgygKdQRCMJAYFXk" width="620" height="340">
+
+
+
+<br>
+<br>
+
+### Multi-Head Attention
