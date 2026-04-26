@@ -660,13 +660,23 @@ Model decide karta hai:
 
 **Ab shuru se samjho images ke through**
 
-**1 - Input**
+**1 - Input**:
 <img src="https://drive.google.com/uc?export=view&id=1XiIapHetAft5QmYiLxapGV-wu7PJ3tDf" width="820" height="490">
 
 <br>
 
-**2 - Embedding**
+**2 - Embedding**:
 <img src="https://drive.google.com/uc?export=view&id=1PcsdzsX_QDBJQlaOv9PXXjw_5FV7RTFX" width="820" height="490">
+
+<br>
+
+**3 - Positional Encoding**:
+<img src="https://drive.google.com/uc?export=view&id=1Du6GUNNbmVD_nRQgcB9HfD_6JBGN6VW6" width="820" height="490">
+
+<br>
+
+**4 - Self Attention**:
+<img src="https://drive.google.com/uc?export=view&id=1Du6GUNNbmVD_nRQgcB9HfD_6JBGN6VW6" width="820" height="490">
 
 <br>
 <br>
