@@ -661,7 +661,7 @@ Model decide karta hai:
 **Ab shuru se samjho images ke through**
 
 **1 - Input**
-<img src="https://drive.google.com/uc?export=view&id=1XiIapHetAft5QmYiLxapGV-wu7PJ3tDf" width="820" height="590">
+<img src="https://drive.google.com/uc?export=view&id=1XiIapHetAft5QmYiLxapGV-wu7PJ3tDf" width="820" height="490">
 
 <br>
 **2 - **
