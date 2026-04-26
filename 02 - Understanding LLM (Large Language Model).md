@@ -435,3 +435,60 @@ Word       | Dim1  | Dim2  | Dim3  | Dim4
 ```
 Jab "Raja" aata hai → ID 4521 → matrix ki 4521vi row nikal lo → yeh hai "Raja" ka embedding!
 
+<br>
+
+**Embedding Matrix kya hoti hai?**:
+
+Socho ek bohot badi Excel spreadsheet hai. Bas itna samajhna hai.
+
+Structure:
+- Har row = vocabulary ka ek word.
+- Har column = ek dimension (ek number).
+- Har cell = us word ke us dimension ka value (floating point number, usually -1 se +1 ke beech).
+
+<img src="https://drive.google.com/uc?export=view&id=1ddtih8eO1EI1zP4A4EGK16TFhyBNq9ho" width="620" height="340">
+
+```
+Embedding Matrix E — shape: [50,000 words × 768 dimensions]
+
+         D1     D2     D3     D4    ... D768
+Raja  → [0.91,  0.08,  0.85,  0.12, ... 0.34]
+Rani  → [0.90,  0.92,  0.83,  0.15, ... 0.31]
+Mard  → [0.10,  0.07,  0.88,  0.09, ... 0.22]
+Aurat → [0.09,  0.91,  0.86,  0.11, ... 0.19]
+Kutta → [0.03,  0.05,  0.12,  0.94, ... 0.77]
+...
+(49,995 aur words)
+```
+
+Yeh matrix ek learnable parameter hai — matlab training ke pehle yeh random numbers se bhari hoti hai, aur training ke baad iska har number meaningful ho jaata hai.
+
+<br>
+
+**Lookup kaise hota hai?**:
+
+Jab "Raja" word aata hai toh sirf ek kaam hota hai:
+
+Step 1 — word ko uski integer ID mein badlo (vocabulary se):
+```
+"Raja" → 4521
+```
+
+Step 2 — matrix ki 4521vi row nikalo. Bas. Itna hi kaam hai:
+```
+embedding = E[4521]
+# → [0.91, 0.08, 0.85, 0.12, 0.78, 0.20, ..., 0.34]
+# ek list of 768 numbers
+```
+
+Yeh operation O(1) hai — matlab koi calculation nahi, sirf ek memory address pe jaao aur row utha lo. Isliye yeh itna fast hota hai.
+
+<br>
+
+**768 dimensions kyun? 512 ya 100 kyun nahi?**
+
+Yeh ek empirical choice hai — experiments se pata chala ki:
+- Bohot kam dimensions (32, 64) → information fit nahi hoti, model stupid banega.
+- Bohot zyada dimensions (4096+) → expensive hai, overfitting ho sakti hai chote models mein.
+- 768 (BERT), 1024 (GPT-2), 4096 (GPT-4 style) → sweet spot hai different model sizes ke liye.
+
