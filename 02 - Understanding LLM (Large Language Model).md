@@ -676,7 +676,11 @@ Model decide karta hai:
 <br>
 
 **4 - Self Attention**:
-<img src="https://drive.google.com/uc?export=view&id=1Du6GUNNbmVD_nRQgcB9HfD_6JBGN6VW6" width="820" height="490">
+<img src="https://drive.google.com/uc?export=view&id=1lxIZ5VapzpB9TB00pUBaImiGMEY_8rgr" width="820" height="490">
+
+<br>
+
+**5 - Feed Forward Network**:
 
 <br>
 <br>
