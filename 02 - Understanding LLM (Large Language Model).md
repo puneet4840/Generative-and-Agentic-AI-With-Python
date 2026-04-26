@@ -681,6 +681,8 @@ Model decide karta hai:
 <br>
 
 **5 - Feed Forward Network**:
+<img src="https://drive.google.com/uc?export=view&id=1RfY2oiyYihYqsBNly58xTom1ifW-Frs_" width="820" height="510">
+
 
 <br>
 <br>
