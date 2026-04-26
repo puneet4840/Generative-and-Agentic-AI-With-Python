@@ -660,11 +660,12 @@ Model decide karta hai:
 
 **Ab shuru se samjho images ke through**
 
-<img src="https://drive.google.com/uc?export=view&id=1D0kykvVNdHxW-6qQLgygKdQRCMJAYFXk" width="820" height="290">
+**1 - Input**
+<img src="https://drive.google.com/uc?export=view&id=1XiIapHetAft5QmYiLxapGV-wu7PJ3tDf" width="820" height="290">
 
 <br>
-
-<img src="https://drive.google.com/uc?export=view&id=1gR2VHC7Ayk1bX2TeD5M_MBKv7QCuVsAE" width="820" height="290">
+**2 - **
+<img src="https://drive.google.com/uc?export=view&id=1gR2VHC7Ayk1bX2TeD5M_MBKv7QCuVsAE" width="820" height="340">
 
 <br>
 <br>
