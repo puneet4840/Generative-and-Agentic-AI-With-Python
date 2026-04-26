@@ -656,6 +656,8 @@ Softmax — Scores ko probability me convert karna
 Model decide karta hai:
 - kaunsa word kis pe kitna focus kare.
 
+Self attention sirf ye probability deta hai hai 
+
 <br>
 
 **Ab shuru se samjho images ke through**
@@ -693,7 +695,4 @@ Model decide karta hai:
 **7 - Logits Output**:
 <img src="https://drive.google.com/uc?export=view&id=14GhFf3lYIniUzDh0IHYaCEmECQ7OIsyh" width="820" height="510">
 
-<br>
-<br>
 
-### Multi-Head Attention
