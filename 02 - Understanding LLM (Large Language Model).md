@@ -683,6 +683,15 @@ Model decide karta hai:
 **5 - Feed Forward Network**:
 <img src="https://drive.google.com/uc?export=view&id=1RfY2oiyYihYqsBNly58xTom1ifW-Frs_" width="820" height="510">
 
+<br>
+
+**6 - N-Layers Repeat**:
+<img src="https://drive.google.com/uc?export=view&id=1-O3intm-8np0WtYKNMpebEd6xX815BGR" width="820" height="510">
+
+<br>
+
+**7 - Logits Output**:
+<img src="https://drive.google.com/uc?export=view&id=14GhFf3lYIniUzDh0IHYaCEmECQ7OIsyh" width="820" height="510">
 
 <br>
 <br>
