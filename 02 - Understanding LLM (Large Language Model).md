@@ -696,3 +696,39 @@ Self attention sirf ye probability deta hai hai
 <img src="https://drive.google.com/uc?export=view&id=14GhFf3lYIniUzDh0IHYaCEmECQ7OIsyh" width="820" height="510">
 
 
+<br>
+<br>
+
+### Poora cycle — "The cat sat on the" → "mat"
+
+**1. Input tokens embed hote hain**:
+
+Har token ID → embedding vector + positional encoding. Yeh vectors model ka actual input hain.
+
+**2. Self-Attention chalta hai**:
+
+Har token baaki sabhi tokens ko "dekhta" hai aur decide karta hai — "mere liye kaun relevant hai?" Weights calculate hote hain (Q × K^T / √d), phir Value vectors se weighted sum nikalta hai.
+
+**3. Feed-Forward Network (FFN)**:
+
+Attention ne context diya, FFN us context se "knowledge" apply karta hai. Yeh ek badi matrix multiplication hai jisme model ki trained knowledge stored hai.
+
+**4. Layer Norm dono ke baad**:
+
+Har attention aur FFN ke baad values normalize hoti hain taaki training stable rahe.
+
+**5. Yeh N baar repeat hota hai**:
+
+GPT-2: 12 layers. GPT-3: 96 layers. Har layer representation ko aur refine karti hai — pehli layers syntax samajhti hain, baad wali deep meaning.
+
+**6. Last token ka vector → Logits**:
+
+Sirf last token ka final vector ek bade Linear layer se multiply hota hai (vocab_size = 50,257). Har vocab token ka ek score (logit) milta hai.
+
+**7. Softmax → Probabilities → Sample**:
+
+Logits → Softmax → probability distribution. Phir temperature se control karke ek token sample hota hai. Yahi predicted next token hai.
+
+**8. Autoregressive loop*:*
+
+Predicted token input mein add hota hai aur poora cycle repeat hota hai — ek ek token generate hota rehta hai jab tak <|end|> na aaye ya max length na ho.
