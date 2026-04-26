@@ -496,3 +496,117 @@ Yeh ek empirical choice hai — experiments se pata chala ki:
 - Bohot zyada dimensions (4096+) → expensive hai, overfitting ho sakti hai chote models mein.
 - 768 (BERT), 1024 (GPT-2), 4096 (GPT-4 style) → sweet spot hai different model sizes ke liye.
 
+<br>
+<br>
+<br>
+
+### Step-4: Positional Encoding (Order samajhna)
+
+Is step mein vector list mein position add ki jaati hai.
+
+**Problem**:
+
+👉 Transformer ko naturally order nahi pata hota.
+
+So:
+```
+"I love you" ≠ "You love I"
+```
+
+**Solution**:
+- Har token ke embedding me position add ki jati hai.
+
+**Example**:
+```
+"I" → vector + position(1)
+"love" → vector + position(2)
+"you" → vector + position(3)
+```
+
+Transformer mein ek badi problem hai — wo tokens ko ek saath (parallel) process karta hai, sequence mein nahi. Isliye use khud pata nahi hota ki "cat" sentence mein pehle aaya ya baad mein. Positional Encoding yahi information inject karta hai.
+
+```
+"The cat sat"   vs   "Sat the cat"
+```
+Dono mein same tokens hain, same embeddings — lekin Positional Encoding ke bina model ko fark nahi pata.
+
+Transformer mein self-attention parallel chalta hai — sabhi tokens ek saath process hote hain. Isliye model ko alag se batana padta hai ki kaun sa token kahan hai.
+
+```
+Final Input = Token Embedding + Positional Encoding
+```
+
+**Kaise add hota hai?**
+
+Usually:
+- sine/cosine functions use hote hain.
+
+Dimension 2i (even) ke liye:
+```
+PE(pos, 2i) = sin(pos / 10000^(2i / d_model))
+```
+
+Dimension 2i+1 (odd) ke liye:
+```
+PE(pos, 2i+1) = cos(pos / 10000^(2i / d_model))
+```
+
+**Intuition**:
+
+Socho har word ke paas ek tag hai:
+- "main 1st hoon", "main 2nd hoon".
+
+**Aaj kal kya use hota hai?**:
+
+Original Sinusoidal PE thoda outdated ho gaya. Modern models mein:
+
+|   Model   |            Positional Encoding           |
+|:---------:|:----------------------------------------:|
+| BERT      | Learned absolute PE (trained parameters) |
+| GPT-2/3   | Learned absolute PE                      |
+| LLaMA 2/3 | RoPE (Rotary Position Embedding)         |
+| Gemini    | RoPE variant                             |
+| Mistral   | RoPE                                     |
+
+<br>
+<br>
+<br>
+
+### Step-5: Next Word Prediction (Transformer Model)
+
+Is step mein model next word predict karta hai ki input ke baad next word kya aayega.
+
+Suppose tumne LLM ko ek text likhke diya ``` The Cat Sat on the```.
+
+Ab LLM yahan next word predict karega ki ```the``` ke baad kya word aayega.
+
+<br>
+
+Maan lo input hai: "The cat sat on the"
+
+TOKENS (pehle se tokenize ho chuke hain)
+```
+The cat sat on the ← last token (abhi yahan hain)
+```
+
+Goal: "the" ke baad kaunsa token aayega? Transformer yahi predict karega.
+
+**Model kya karta hai?**:
+
+Har word ko compare karta hai har word se.
+
+Mechanism:
+
+Har token ye 3 vector banata hai.
+- Query (Q).
+- Key (K).
+- Value (V).
+
+Intuition:
+- Q = main kya dhund raha hu.
+- K = mere paas kya info hai.
+- V = actual content.
+
+Formula:
+
+<img src="https://drive.google.com/uc?export=view&id=1vIkzXqwlTFbBb5ENe5gqhZoiwO9u-gpz" width="620" height="340">
