@@ -140,5 +140,30 @@ pip install openai
 
 main.py:
 ```
+from openai import OpenAI
+client = OpenAI(
+    api_key="XXXX",  #Use your API_KEY Here.
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 
+)
+
+response = client.chat.completions.create(
+    model="gemini-3-flash-preview", 
+    messages=[
+        {"role": "user", "content": "Hi, how are you? Who are you?"}
+    ]
+)
+
+print(response.choices[0].message.content)
 ```
+
+Output:
+```
+Hello! I'm doing well, thank you for asking. How are you?
+
+I am Gemini, a large language model, trained by Google. How can I help you today?
+```
+
+Ye code use karne par request gemini ke paas hi jayegi bas fayda itna hai ki code aur library openai ki use hogi.
+
+Code mein base_url likhne par saari request us url par redirect hongi aur fir gemini par redirect hongi, isliye ye code work kar rha hai gemini ke saath.
