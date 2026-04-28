@@ -40,6 +40,7 @@ Api Key:
 ```
 AIzaSyBTLN4Z8slwpHZQAzRaOoOO_U6sQiTdRPs
 ```
+Note: Github par API Key commit karne ke baad mujhe google ait studio ne warning ki api ki publically expose ho chuki hai, isliye ye api key ne work karna band kar diya aur code mein error diya tha ki ```api key publically exposed```. Isliye ye api key maine delete kar di thi.
 
 Name:
 ```
@@ -112,4 +113,32 @@ print(response.text)
 Output:
 ```
 I'm doing great, thank you for asking! How are you doing today? Is there anything I can help you with?
+```
+
+<br>
+<br>
+
+**Note**:
+
+Tutorials mein tutor ne OpenAI ki API Key use ki thi jiski python library alag hai aur code bhi alag hai, To tutor ne kaha ki agar apko OpenAI ke code mein hi gemini ki API Key use karni hai to is tarike se kar sakte hain.
+
+Code to OpenAI ka rahega lekin api key gemini ki hogi aur model bhi gemini use hoga aur request bhi gemini ko jayegi aur output bhi gemini hi dega, bas yaha code library open ai ki use hogi.
+
+<br>
+
+### Install OpenAI Library
+
+Ab openai ki python library install karo:
+
+```
+pip install openai
+```
+
+<br>
+
+### Python Code for accessing Gemini API Key using OpenAI python code
+
+main.py:
+```
+
 ```
