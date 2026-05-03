@@ -206,3 +206,32 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
+
+<br>
+<br>
+
+### ChatML vs Doosre Formats
+
+ChatML sirf ek format nahi hai. Alag-alag model families alag formats use karti hain:
+
+- Llama/Meta ka format thoda alag hai — wo ```[INST]``` aur ```[/INST]``` tags use karte hain, aur system ko pehle ```<<SYS>>``` block mein rakhte hain.
+
+- Anthropic (Claude) ka format internally alag hai — wo ```\n\nHuman:``` aur ```\n\nAssistant:``` separators use karte the pehle, aur ab unka apna internal format hai jo publicly documented nahi hai utna.
+
+- Gemini/Google ka bhi apna internal structuring hai.
+
+Lekin logically, sab ek hi cheez kar rahe hain — roles define karna, turns separate karna, aur model ko batana ki kab sunna hai aur kab bolna hai. ChatML specifically GPT-family models (GPT-3.5, GPT-4, aur inpar based open source models jaise Mistral, Qwen, etc.) ke saath associated hai.
+
+<br>
+<br>
+
+### Open Source World mein ChatML
+
+ChatML ka sabse zyada use open source community mein dikhta hai. Jab OpenAI ne ChatML introduce kiya, toh bohot saare open source model trainers ne isko adopt kar liya. Aaj agar aap HuggingFace par koi bhi instruction-tuned model download karo — chahe wo Mistral ho, Qwen ho, Phi ho — toh unka tokenizer_config.json mein ek "chat_template" field hoga jo Jinja2 template format mein ChatML (ya ChatML-inspired) format define karta hai.
+
+<br>
+<br>
+
+### Practical Implications — Developer ke Liye
+
+Agar aap koi AI application bana rahe ho OpenAI API ya kisi compatible API se, toh aapko directly ChatML nahi likhna padta — aap messages list of dicts mein dete ho jaise ```[{"role": "user", "content": "Hello"}]``` aur API internally ChatML mein convert karti hai. Lekin agar aap locally koi model run kar rahe ho (jaise llama.cpp, vLLM, Ollama), toh aapko dhyan rakhna padta hai ki sahi chat template use ho rahi hai. Galat template use karne par model responses degraded ho jaate hain kyunki model ek alag format expect karta hai aur aap dusra de rahe ho.
