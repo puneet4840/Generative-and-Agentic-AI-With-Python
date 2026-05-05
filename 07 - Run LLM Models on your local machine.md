@@ -125,10 +125,10 @@ Give the prompt to your model.
 
 <br>
 
-<img src="https://drive.google.com/uc?export=view&id=15Qwz68xo9-sLzH4_W-F5ksxIIqF54-yI" width="600" height="330">
+<img src="https://drive.google.com/uc?export=view&id=15Qwz68xo9-sLzH4_W-F5ksxIIqF54-yI" width="600" height="350">
 
 <br>
 
 LLM model bohot jyada CPU aur Memory use karta hai. Aur ollama in model ko run kar rha hai. To mere local system ke CPU aur Memory consumption kitna high chla gya tha.
 
-<img src="https://drive.google.com/uc?export=view&id=1lVpl3Q-uubaxO2o_bLONCQup-kZb9bM9" width="600" height="330">
+<img src="https://drive.google.com/uc?export=view&id=1lVpl3Q-uubaxO2o_bLONCQup-kZb9bM9" width="600" height="60">
