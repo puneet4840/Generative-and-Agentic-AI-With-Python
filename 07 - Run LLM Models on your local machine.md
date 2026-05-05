@@ -131,4 +131,4 @@ Give the prompt to your model.
 
 LLM model bohot jyada CPU aur Memory use karta hai. Aur ollama in model ko run kar rha hai. To mere local system ke CPU aur Memory consumption kitna high chla gya tha.
 
-<img src="https://drive.google.com/uc?export=view&id=1lVpl3Q-uubaxO2o_bLONCQup-kZb9bM9" width="600" height="60">
+<img src="https://drive.google.com/uc?export=view&id=1lVpl3Q-uubaxO2o_bLONCQup-kZb9bM9" width="600" height="40">
