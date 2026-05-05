@@ -21,6 +21,24 @@ To in models ko locally run karne ke liye ek tool hota hai **Ollama**.
 
 Ollama ek open-source tool hai jo LLM models ko locally (Windows, Linxu aur MacOS) par run karne ke liye banaya gaya hai.
 
+**How Ollama works**:
+
+```
+┌──────────────┐         ┌──────────────────┐         ┌──────────────┐
+│              │  HTTP    │                  │  Inference│             │
+│  Open WebUI  │────────▶│  Provider API    │────────▶ │    Model     │
+│  (frontend)  │◀────────│  (cloud/local)   │◀──────── │  (LLM/VLM)  │
+│              │  Stream  │                  │  Tokens  │             │
+└──────────────┘         └──────────────────┘         └──────────────┘
+```
+- You type a message in Open WebUI.
+- Open WebUI sends it to your provider's API endpoint.
+- The provider runs inference on the selected model.
+- Tokens stream back to Open WebUI in real time.
+- You see the response in the chat interface
+
+<br>
+
 There are two methods to run Ollama on your local machine:
 
 **Method-1**:
@@ -28,6 +46,8 @@ There are two methods to run Ollama on your local machine:
 Directly download the Ollama setup(.exe) from internet and run.
 
 Lekin ese download karke run karne par problem hai, Ye setup ek to platform independent hain matlab Linux, Windows aur MacOS par alag alag download karna padta hai. Dusra ye tumhare system ko bloat kar deta hai matlab kaafi space consume karta hai.
+
+
 
 <br>
 
@@ -132,3 +152,81 @@ Give the prompt to your model.
 LLM model bohot jyada CPU aur Memory use karta hai. Aur ollama in model ko run kar rha hai. To mere local system ke CPU aur Memory consumption kitna high chla gya tha.
 
 <img src="https://drive.google.com/uc?export=view&id=1lVpl3Q-uubaxO2o_bLONCQup-kZb9bM9" width="600" height="40">
+
+Is tarike se tum LLM models ko apne local systems mein use kar sakte ho.
+
+<br>
+<br>
+<br>
+
+## Access the LLM model using the Python code
+
+Abhi tak hum OpenWeb UI ke through apne prompt LLM model ko de rhe the, Lekin ab hum python code ke through apne prompt Ollma se chal rhe LLM model ko denge.
+
+### Step-1: Install the Libraries
+
+Sabse pehle ye libraries install karni hain:
+```
+pip install "fastapi[standard]"
+pip install ollama
+```
+
+<br>
+
+### Step-2: Create a python file
+
+```server.py```
+```
+from fastapi import FastAPI, Body
+from ollama import Client
+
+app = FastAPI()
+
+client = Client(
+    host="http://localhost:11434",)
+
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+@app.post("/chat")
+def chat(
+        
+        message: str = Body(..., example="What is the capital of France?")
+):
+    response = client.chat(model="gemma:2b", messages=[{"role": "user", "content": message}])
+
+    return {"response": response.message.content}
+```
+
+<br>
+
+### Step-3: Run python file
+
+Ab python file ko run karo.
+
+command:
+```
+fastapi dev server.py
+```
+
+Tumhara fastapi ka server run ho jayega.
+
+**Access your app**:
+
+Ab browser mein ```http://127.0.0.1:8000/``` hit karo tumhara fastapi app tumko dekhega. 
+
+Fastapi swagger ui bhi deta hain jisse aap apne api test kar sakte ho. To swagger access karne ke liye ye url browser mein hit kar ```http://127.0.0.1:8000/docs```.
+
+Isse swagger ka ui open ho jayega jaha tumhara ```/chat``` post method bhi dikhega.
+
+Try it out pe click karke value mein apni query likhiye aur execute kar do. LLM model ke paas request jayegi aur model response de dega.
+
+<br>
+
+<img src="https://drive.google.com/uc?export=view&id=1rgam-vKfgjN7u-aD_RzGi9_Rdmcd2msO" width="600" height="330">
+
+<br>
+
+DONE!!!
