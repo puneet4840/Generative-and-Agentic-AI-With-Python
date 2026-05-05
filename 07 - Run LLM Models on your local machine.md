@@ -225,7 +225,7 @@ Try it out pe click karke value mein apni query likhiye aur execute kar do. LLM 
 
 <br>
 
-<img src="https://drive.google.com/uc?export=view&id=1rgam-vKfgjN7u-aD_RzGi9_Rdmcd2msO" width="800" height="530">
+<img src="https://drive.google.com/uc?export=view&id=1rgam-vKfgjN7u-aD_RzGi9_Rdmcd2msO" width="800" height="500">
 
 <br>
 
