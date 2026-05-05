@@ -370,6 +370,40 @@ def multiply(a, b):
 ```
 
 <br>
+
+### Python Example with Zero-Shot Prompting
+
+```one-shot-prompting.py```:
+```
+# Zero-Shot Prompting 
+
+from openai import OpenAI
+client = OpenAI(
+    api_key="AIzaSyCyQrDCJaT3OV_62gwb46DOGZFN9P3O9q0",
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+
+)
+
+Sytem_Prompt = """
+Do not answer anything except maths related questions otherwise just say sorry"
+
+Exampple-1: 
+Tell me a joke.
+Answer: Sorry, I can only answer coding related questions.
+"""
+
+response = client.chat.completions.create(
+    model="gemini-3-flash-preview", 
+    messages=[
+        {"role": "system", "content": Sytem_Prompt},
+        {"role": "user", "content": "Hi, how are you? Isko french mein translate kar do?"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+<br>
 <br>
 
 ### Few-Shot Prompting
