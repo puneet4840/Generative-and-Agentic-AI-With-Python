@@ -512,7 +512,7 @@ Could you please call me at your earliest convenience?
 
 from openai import OpenAI
 client = OpenAI(
-    api_key="AIzaSyCyQrDCJaT3OV_62gwb46DOGZFN9P3O9q0",
+    api_key="XXXX",
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 
 )
