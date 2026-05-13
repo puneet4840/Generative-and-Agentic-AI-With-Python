@@ -7,6 +7,15 @@ RAG ek technique hai jisme LLM (Large Language Model) jaise OpenAI ke models aur
 Iska matlab hai ki hum LLM model ko text data dete hain jaise PDFs, Word Documents aur LLM model us data mein se user ka question dhoond ke nikalta hai. Isi ko RAG kehte hain.
 
 <br>
+
+2020–2022 ke beech jab GPT-3 aaya, log bahut excited hue. Lekin ek baat clear ho gayi jaldi hi — yeh model bahut intelligent tha, lekin "closed box" tha. Isko sirf wahi pata tha jo training data mein tha. Company-specific documents? Nahi pata. Last week ki news? Nahi pata. Tumhari organization ki internal policies? Bilkul nahi pata.
+
+Phir ek aur problem thi — jab model ko nahi pata hota tha, toh woh chup nahi rehta tha. Woh confidently galat cheezein bol deta tha. Isko "hallucination" kehte hain. Ek doctor ne medical chatbot se pucha, usne ek aisi dawai suggest ki jo exist hi nahi karti — lekin itne confidence ke saath boli ke doctor ko doubt hi nahi hua. Yeh dangerous tha.
+
+Toh researchers ne socha — kya koi aisa tarika hai jisse LLM ko runtime par relevant information diya jaaye? Jaise ek student ko exam ke time open book de do?
+Yahi se RAG ka idea aaya. 2020 mein Facebook AI Research (FAIR) ne ek paper publish kiya — "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" — aur AI ki duniya badal gayi.
+
+<br>
 <br>
 
 ### Problem Kya Thi Without RAG?
@@ -109,4 +118,272 @@ Tum:
 
 Exactly yehi RAG karta hai.
 
+<br>
+<br>
+
+### RAG kaam kaise karta hai?
+
+RAG ka working process 2 parts mein divided hota hai:
+- Indexing Phase.
+- Query Phase.
+
+<br>
+
+### Indexing Phase
+
+Indexing phase mein data ko chunks mein divide kiya jata hai aur vector db mein store kiya jata hai.
+
+Indexing phase mein bhi multiple phases hote hain.
+
+**Step-1: Data Collection**:
+
+RAG system data collect karta hai.
+
+Sabse pehle RAG system ko knowledge chahiye hoti hai. Ye knowledge kahin se bhi aa sakti hai, Jaise:
+- PDFs
+- DOCX files
+- company wiki
+- Confluence
+- SharePoint
+- GitHub repositories
+- Kubernetes YAML files
+- Terraform modules
+- Slack chats
+- databases
+- websites
+
+System ke paas loaders hote hain. Different file types ke liye different parsers hote hain.
+
+Example:
+- PDF parser
+- HTML parser
+- Markdown parser
+- GitHub loader
+
+Ye loaders actual text extract karte hain.
+
+Suppose PDF mein likha hai:
+```
+If pod enters CrashLoopBackOff:
+1. Check logs
+2. Verify probes
+3. Inspect events
+```
+System is text ko extract kar lega.
+
+**Metadata Collection**:
+
+Sirf text hi important nahi hota.
+
+Metadata bhi important hota hai.
+
+Metadata means:
+extra information about document.
+
+Example:
+```
+{
+  "source": "runbook.pdf",
+  "page": 12,
+  "team": "devops",
+  "environment": "production"
+}
+```
+Ye metadata later filtering mein bahut useful hota hai. Suppose user specifically production docs search karna chahta hai. Tab metadata help karega.
+
+<br>
+
+**Step 2 — Document Cleaning**:
+
+Raw data usually messy hota hai. Agar directly embeddings bana diye toh retrieval quality kharab ho sakti hai. Isliye data ki cleaning hoti hai.
+
+System:
+- extra spaces remove karta hai.
+- headers/footers remove karta hai.
+- duplicate lines remove karta hai.
+- HTML tags clean karta hai.
+- garbage OCR text remove karta hai.
+
+Example:
+
+Before cleaning:
+```
+Page 1 of 42
+CONFIDENTIAL
+
+CrashLoopBackOff troubleshooting
+```
+After cleaning:
+```
+CrashLoopBackOff troubleshooting
+```
+Ye step quality improve karta hai.
+
+<br>
+
+**Step 3 — Chunking**:
+
+Ab aata hai RAG ka bahut important concept: Chunking.
+
+LLMs huge documents ko directly efficiently process nahi karte.
+
+Agar tum pura 500-page PDF directly inject kar do:
+- token limit exceed ho jayegi
+- irrelevant context aa jayega
+- cost badhegi
+- performance degrade hogi
+
+Isliye documents ko small-small logical pieces mein todte hain.
+
+In pieces ko: chunks kehte hain.
+
+Example-1:
+
+Suppose ek 500 page ka pdf hai, Usko chunks mein break karna hai to ese kar sakte hain.
+```
+page 1 - 3 : Chunk-1
+page 4 - 6 : Chunk-2
+page 7 - 10: Chunk-3
+```
+
+Example-2:
+
+Suppose ek pdf ka page hai, usko chunks mein break karna hai to paragraph by paragraph chunks mein break kar sakte hain.
+
+Example-3:
+
+Suppose ek Kubernetes guide hai.
+
+Usme sections hain:
+- deployments
+- services
+- ingress
+- DNS
+- storage
+
+Agar pura document ek hi chunk hua: retrieval accurate nahi hoga.
+
+Isliye system split karta hai.
+
+Example:
+```
+Chunk 1 → Deployment basics
+Chunk 2 → ReplicaSets
+Chunk 3 → Rolling updates
+Chunk 4 → Rollbacks
+```
+Ab retrieval precise ho sakta hai. Ese bhi chunks mein break kiya jata hai.
+
+<br>
+
+Chunk Size Important Kyun Hai?
+
+Agar chunk bahut chhota hua context break ho jayega.
+
+Example:
+```
+Line 1: Kubernetes deployments
+Line 2: allow rolling updates
+```
+Agar split galat hua:
+```
+meaning destroy ho sakta hai.
+```
+Agar chunk bahut bada hua:
+```
+irrelevant information aa jayegi.
+```
+
+Typical Chunk Sizes Generally: 200–1000 tokens used hote hain. Isliye smart chunking bahut important engineering problem hai.
+
+<br>
+
+Overlapping Chunks:
+
+Real-world RAG systems overlap use karte hain.
+
+Example:
+```
+Chunk A → lines 1-100
+Chunk B → lines 80-180
+```
+
+Overlap ka benefit:
+- context continuity maintain rehti hai.
+
+Suppose sentence line 95 se start hua aur line 110 tak gaya.
+
+Without overlap sentence cut ho jayega. Overlap is issue ko solve karta hai.
+
+<br>
+
+**Step 4 — Embeddings**:
+
+Is step mein text ko vectors mein convert kiya jata hai, vector ka matlab numbers ki list.
+
+Embedding: text ka numerical vector representation hota hai.
+
+Simple words mein: AI text ka meaning numbers mein convert karta hai.
+
+Suppose sentence hai:
+```
+How to restart Kubernetes pod?
+```
+Embedding model ise convert karega:
+```
+[0.245, -0.992, 0.771, ...]
+```
+Ye vector hundreds ya thousands dimensions ka ho sakta hai.
+
+Embedding words ko represent nahi karta. Meaning ko represent karta hai.
+
+<br>
+
+Embedding Model Internally Kya Karta Hai?
+
+Embedding models generally transformer architecture use karte hain.
+
+Ye:
+- sentence context samajhte hain.
+- word relationships analyze karte hain.
+- semantic meaning encode karte hain.
+
+Popular embedding systems:
+- OpenAI embeddings
+- BGE
+- E5
+- Sentence Transformers
+
+<br>
+
+**Step 5 — Vector Database Storage**:
+
+Ab embeddings ko vector database mein store karna hota hai.
+
+Traditional SQL DB yaha sufficient nahi hota. Kyuki yaha exact matching nahi karni. Semantic similarity search karni hoti hai.
+
+Isliye Vector Database use hota hai.
+
+Popular vector DBs:
+- Pinecone
+- Weaviate
+- Qdrant
+- Milvus
+
+Vector DB Ka Core Kaam
+
+Ye:
+- embeddings store karta hai.
+- similarity search optimize karta hai.
+- nearest vectors quickly retrieve karta hai
+
+Suppose millions embeddings stored hain. Har query par sab compare karna expensive hota.
+
+Isliye optimized indexing algorithms use hote hain:
+- HNSW
+- IVF
+- PQ
+
+Ye ANN:
+- Approximate Nearest Neighbor search enable karte hain.
 
