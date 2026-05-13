@@ -387,3 +387,173 @@ Isliye optimized indexing algorithms use hote hain:
 Ye ANN:
 - Approximate Nearest Neighbor search enable karte hain.
 
+<br>
+<br>
+
+### Query Phase
+
+Ye RAG ka second phase hota hai. Is phase mein user ki query ko same vector model ka use karke vector embedding mein convert kiya jata hai, Fir vector database mein user ki query ke vector embedding jaise same semantic match wale vector find kiye jaate hain. Fir user ki normal query aur find kiye hue vector LLM model ko diye jaate hain. Fir LLM model response generate karta hai.
+
+
+Yaha actual user interaction hota hai.
+
+**Step 6 — User Question**:
+
+Is step mein user apni query puchta hai, jo bhi user ko LLM se puchna ho.
+
+User puchta hai:
+```
+Why is my pod restarting continuously?
+```
+
+<br>
+
+**Step 7 — Query Embedding**:
+
+Jaise uper ke steps mein documents embeddings mein convert hue the, waise hi query bhi embedding mein convert hoti hai.
+
+Question:
+```
+Why is my pod restarting continuously?
+```
+↓
+
+Vector:
+```
+[0.661, -0.113, 0.991]
+```
+
+Documents aur queries same embedding model se vectorize hone chahiye. Otherwise vector space mismatch ho jayega.
+
+<br>
+
+**Step 8 — Similarity Search**:
+
+Is step mein user ki query ke jo vector banaye the unko vector db documents ke similar vector chunks se compare karta hai matlab user ki query jaise chunks db mein find karta hai.
+
+Query embedding generate hone ke baad vector database similarity search perform karta hai jahan query vector ko stored document vectors ke against compare kiya jata hai using techniques like cosine similarity. Agar vectors semantic space mein ek doosre ke close hote hain toh system un chunks ko relevant maanta hai aur retrieve karta hai. Isi mechanism ki wajah se user “pod restarting issue” likhe tab bhi system “CrashLoopBackOff troubleshooting” retrieve kar sakta hai.
+
+Ab vector DB: user ke query vector ko stored document vectors ke saath compare karta hai.
+
+Goal: most semantically relevant chunks find karna.
+
+Example
+
+User query:
+```
+pod restarting issue
+```
+Retrieved chunks ho sakte hain:
+```
+CrashLoopBackOff troubleshooting
+Liveness probe failures
+OOMKilled analysis
+```
+Even though exact words same nahi the, semantic meaning match ho gaya. Yehi embeddings ka power hai.
+
+<br>
+
+**Step 9 — Retrieval**:
+
+Generally top-k chunks retrieve hote hain.
+
+Example:
+- top 3
+- top 5
+- top 10
+
+chunks.
+
+Ye chunks user query ke most relevant pieces hote hain.
+
+<br>
+
+**Step-10 - Re-ranking**:
+
+Is step mein fir se perfect chunks ko find out kiya jata hai.
+
+Initial vector retrieval fast hota hai lekin perfectly accurate nahi hota, isliye advanced RAG systems reranking stage use karte hain jahan retrieved chunks ko deeper contextual models evaluate karte hain. Rerankers query aur document relationships ko more detailed level par analyze karte hain aur best possible chunks ko final context ke liye select karte hain. Ye stage overall answer relevance aur grounding significantly improve karti hai.
+
+<br>
+
+**Step 11 — Context Assembly**:
+
+Jab relevant chunks vector db se retrieve ho jate hain, tab:
+- original user query.
+- retrieved chunks/context.
+
+dono ko combine karke LLM ko diya jata hai.
+
+Is step mein user ki original query aur vector db se document se find kiye hue chunks dono ko combine karke LLM model ko diye jaate hain.
+
+Yaani LLM ko sirf chunks nahi diye jate. Original question bhi diya jata hai, warna LLM ko samajh hi nahi aayega ki user kya puch raha hai.
+
+Example:
+
+Suppose user query hai:
+```
+How to debug CrashLoopBackOff in Kubernetes?
+```
+
+Step 1 — Query Embedding
+
+Is query ka embedding bana:
+```
+[0.11, 0.77, -0.92]
+```
+
+Step 2 — Similarity Search
+
+Vector DB ne top chunks retrieve kiye:
+```
+Chunk 1:
+Use kubectl logs to inspect container crash.
+
+Chunk 2:
+Check liveness and readiness probes.
+
+Chunk 3:
+Use kubectl describe pod for events.
+```
+
+Step 3 — Final Prompt Construction
+
+Ab actual LLM prompt kuch aisa banega:
+```
+You are a Kubernetes assistant.
+
+Use ONLY the provided context.
+
+Context:
+---------
+Use kubectl logs to inspect container crash.
+
+Check liveness and readiness probes.
+
+Use kubectl describe pod for events.
+
+Question:
+How to debug CrashLoopBackOff in Kubernetes?
+```
+
+Notice karo:
+- Original user query abhi bhi present hai.
+- Retrieved chunks bhi present hain
+
+Dono combine hue.
+
+<br>
+
+**Step 12 — LLM Processing**:
+
+Ab LLM ka actual generation phase start hota hai.
+
+LLM:
+- retrieved context read karta hai.
+- relationships understand karta hai.
+- reasoning perform karta hai.
+- answer generate karta hai
+
+Internally transformer attention mechanism use hota hai.
+
+LLM har token ke relationships analyze karta hai.
