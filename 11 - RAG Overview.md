@@ -557,3 +557,63 @@ LLM:
 Internally transformer attention mechanism use hota hai.
 
 LLM har token ke relationships analyze karta hai.
+
+Example
+
+Context mein:
+```
+Check kubectl logs
+Verify probes
+```
+LLM answer generate karega:
+```
+Your pod may be restarting because:
+- application crash
+- failed probes
+- OOMKilled issue
+```
+
+<br>
+
+**Step 14 — Final Response**:
+
+Ab user ko final grounded response milta hai.
+
+Ye response:
+```
+retrieved docs based hota hai
+updated ho sakta hai
+organization-specific ho sakta hai
+```
+Isi wajah se RAG enterprise AI ka foundation ban gaya hai.
+
+<br>
+
+**Final End-to-End Flow**:
+
+Pure system ko ek baar fir visualize karo:
+```
+Documents
+   ↓
+Cleaning
+   ↓
+Chunking
+   ↓
+Embeddings
+   ↓
+Vector Database
+   ↓
+User Question
+   ↓
+Query Embedding
+   ↓
+Similarity Search
+   ↓
+Top Relevant Chunks
+   ↓
+Prompt Injection
+   ↓
+LLM Generation
+   ↓
+Final Accurate Response
+```
