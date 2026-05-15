@@ -41,10 +41,11 @@ pdf_path = Path(__file__).parent / "Mastering_Azure_Cloud.pdf"
 
 loader = PyPDFLoader(file_path=pdf_path)
 
-pages = loader.load() # This load method is loading the pdf into pages. We car print page by page.
+pages = loader.load() # This load method is loading the pdf into pages. We can print page by page.
 
 print(pages[1])
 ```
+loader pdf ko page by page load karta hai. Hum page number dekar particular page ko print karwa sakte hain.
 
 Output:
 ```
