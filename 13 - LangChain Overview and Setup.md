@@ -111,6 +111,16 @@ banane ke liye.
 <br>
 <br>
 
+### Installing LangChain for Python
+
+command:
+```
+pip install -U langchain
+```
+
+<br>
+<br>
+
 ### LangChain ke main components
 
 **1. Models**:
