@@ -46,11 +46,10 @@ Ye sab kaafi complex ho jata hai.
 **Example Without LangChain**:
 
 Suppose tum ek chatbot banana chahte ho jo:
-```
-PDFs read kare
-questions answer kare
-memory maintain kare
-```
+- PDFs read kare.
+- questions answer kare.
+- memory maintain kare.
+
 Without framework tumhe sab manually code karna padega.
 
 ```
@@ -116,6 +115,8 @@ banane ke liye.
 command:
 ```
 pip install -U langchain
+pip install langchain-community
+pip install pypdf
 ```
 
 <br>
