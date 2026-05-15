@@ -12,7 +12,7 @@ Ye Indexing phase ke steps hote hain.
 
 <br>
 
-### Implementing Load the Documents step on Indexing Phase
+### Implementing Load the Documents step of Indexing Phase
 
 **Installing the necessary Libraries**
 ```
