@@ -73,16 +73,7 @@ Ab is step mein hum document ko chunks mein divide karenge. Chunk mein divide ka
 pip install -U langchain-text-splitters
 ```
 
-Document Split Code:
-```
-# Split the loaded file into smaller chunks
-
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=400)
-
-splits = text_splitter.split_documents(document=docs)
-```
-
-Complete Code:
+Complete Python Code:
 ```
 from pathlib import Path
 from langchain_community.document_loaders import PyPDFLoader
