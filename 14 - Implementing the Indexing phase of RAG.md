@@ -12,7 +12,7 @@ Ye Indexing phase ke steps hote hain.
 
 <br>
 
-### Implementing Load the Documents step of Indexing Phase
+### Step-1: Implementing Load the Documents step of Indexing Phase
 
 **Installing the necessary Libraries**
 ```
@@ -57,4 +57,50 @@ The Azure portal can be divided into 3 sections.
 ● Let’s try to create a resourceandseehow to usethePortal.Forexample,let us ● ClickontheBurgermenuonthelefttopandselectResourcegroupandclickonit.You will get a new Panel.
 --Back to Index-- 2
 create a resource group called demystify.' metadata={'producer': 'PyPDF', 'creator': 'PyPDF', 'creationdate': '', 'source': 'C:\\Users\\puneetverma02\\OneDrive - Nagarro\\Desktop\\Puneet_DevOPs\\6 - Generative and Agentic AI with python\\7 - Implementing RAG\\Mastering_Azure_Cloud.pdf', 'total_pages': 104, 'page': 1, 'page_label': '2'}
+```
+
+<br>
+<br>
+
+### Step-2: Dividing the ducoment in Chunks
+
+To uper wale step se humne document ko page by page python code mein load kiya.
+
+Ab is step mein hum document ko chunks mein divide karenge. Chunk mein divide karne ke liye langchain ki ```langchain-text-splitters``` library ka use kiya jata hai.
+
+**Install Python LangChain Library**:
+```
+pip install -U langchain-text-splitters
+```
+
+Document Split Code:
+```
+# Split the loaded file into smaller chunks
+
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=400)
+
+splits = text_splitter.split_documents(document=docs)
+```
+
+Complete Code:
+```
+from pathlib import Path
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitter import RecursiveCharacterTextSplitter
+
+pdf_path = Path(__file__).parent / "Mastering_Azure_Cloud.pdf"
+
+
+# Load the file in python program
+
+loader = PyPDFLoader(file_path=pdf_path)
+
+docs = loader.load()
+
+
+# Split the loaded file into smaller chunks
+
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=400)
+
+splits = text_splitter.split_documents(document=docs)
 ```
