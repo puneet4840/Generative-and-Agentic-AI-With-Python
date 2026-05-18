@@ -68,7 +68,7 @@ Bahut saari cheeze manually manage karni padti hain
 
 **LangChain Kya Karta Hai?**:
 
-LangChain ye sab components ko ready-made building blocks ke form mein provide karta hai.
+LangChain ye sab components ko ready-made building blocks ke form mein provide karta hai. Matlab LangChain ke developers ne niche likhi hue components ko already code karke LangChain framework mein add kar diya hai. User directly LangChain framework ko code mein use karke AI implement kar sakta hai. Ye hi langchain ka benefit hai.
 
 Yaani:
 - loaders.
@@ -81,7 +81,7 @@ Yaani:
 
 already available hote hain.
 
-Tum bas combine karo.
+Tum bas combine karo. Ye sabhi functionality LangChain ke developers ne create ki hai user ko directly apne code mein use karne ke liye.
 
 <br>
 
@@ -256,4 +256,8 @@ db = Chroma.from_documents(
     embeddings
 )
 ```
+
+<br>
+
+Ye sabhi langchain ke components hote hain jo LangChain apne framework mein provide karta hai. Hum inhi components ka use apne code mein karte hain aur AI implement karte hain. Jaise aage ki slides mein mai RAG implement karunga.
 
