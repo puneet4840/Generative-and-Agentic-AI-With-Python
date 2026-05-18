@@ -52,25 +52,16 @@ Suppose tum ek chatbot banana chahte ho jo:
 
 Without framework tumhe sab manually code karna padega.
 
-```
 Example:
-
+```
 pdf = load_pdf()
-
 chunks = split_text(pdf)
-
 embeddings = create_embeddings(chunks)
-
 vector_db.store(embeddings)
-
 query = user_input()
-
 query_embedding = embed(query)
-
 docs = similarity_search(query_embedding)
-
 prompt = build_prompt(query, docs)
-
 response = llm.generate(prompt)
 ```
 Bahut saari cheeze manually manage karni padti hain
