@@ -12,6 +12,31 @@ Ye Indexing phase ke steps hote hain.
 
 <br>
 
+Make sure ki ```Qdrant``` DB running ho.
+
+### Running Qdrant DB Locally using Docker
+
+```docker-compose.yaml```
+```
+version: '3.8'
+
+services:
+  vector-db:
+    image: qdrant/qdrant:latest
+    container_name: vector-db
+    ports:
+      - "6333:6333"
+```
+
+Run:
+```
+docker-compose up -d
+```
+Qdrant db port ```http://localhost:6333/``` par run hoga
+
+<br>
+<br>
+
 ### Step-1: Implementing Load the Documents step of Indexing Phase
 
 **Installing the necessary Libraries**
