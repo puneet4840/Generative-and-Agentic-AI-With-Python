@@ -47,5 +47,9 @@ Hum is problem ko solve karenge code ko Asynchronous structure mein convert kark
 
 **Problem kaise solve hui**:
 
-Humne code ko Asynchronous structure mein convert kar diya. TO jab bhi user server ko apni query bhejega to server us query ko queue mein daal dega aur free ho jayega. Dusra user apni query server ko kar sakta hai server busy nhi milega dusre user ko.
+Humne code ko Asynchronous structure mein convert kar diya. TO jab bhi user server ko apni query bhejega to server us query ko queue mein daal dega aur free ho jayega. 
+
+AB agar bohot saare users aaye aur server ko request karne lage to server sabhi users ki query ko queue mein daal dega aur free ho jayega. Queue ke dusre end par ek alag code work kar rha hoga aur queries ko process karke db mein response store karta jayega.
+
+Ese ye system Asychronous behave karega.
 
