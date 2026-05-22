@@ -53,3 +53,66 @@ AB agar bohot saare users aaye aur server ko request karne lage to server sabhi 
 
 Ese ye system Asychronous behave karega.
 
+<br>
+<br>
+
+### Setting up the Things
+
+Queue ko setup karne ke liye hum Python ki ek library **Python RQ** ka use karenge. Ye library background mein redis ka use karti hai, lekin redis ne open-source license revoke kar diya hai. Normally aap abhi bhi Redis ko apne local system par Docker ke jariye bilkul free aur normally use kar sakte hain.
+
+Yeh restriction sirf un badi cloud companies (jaise AWS) ke liye hai jo Redis ko bechkar apna khud ka paid service chalati hain.
+
+To hum redis na use karke **Valkey** ka use karenge, Valkey bilkul same redis ki tarah hi work karti hai.
+
+<br>
+
+**Install the python RQ library**:
+```
+pip install rq
+```
+Ye library python code ko redis queue ke saath work karne ke liye use hogi. Filhal hum valkey use kar rahe hain, lekin code mein redis ka use karenge. To redis ke code ke saath valkey queue perfectly work karti hai.
+
+<br>
+<br>
+
+**Create Directory Structure**:
+
+Ye directory structure create karlo:
+```
+/RAG_with_enhancements
+  |- /client
+      |- rq_client.py
+  |- /queues
+      |- 
+  |- docker-compose.yml
+```
+
+<br>
+<br>
+
+**Run the valkey and qdrant containers**:
+
+Create a docker-compose yaml file and write the below configuration in it.
+
+```docker-compose.yml```:
+```
+services:
+  valkey:
+    image: valkey/valkey
+    container_name: valkey
+    ports:
+      - "6379:6379"
+
+  vector-db:
+    image: qdrant/qdrant:latest
+    container_name: vector-db
+    ports:
+      - "6333:6333"
+```
+Run the container:
+```
+docker compose up -d
+```
+Isse valkey aur qdrant container port 6379 aur 6333 par run ho jayenge.
+
+
