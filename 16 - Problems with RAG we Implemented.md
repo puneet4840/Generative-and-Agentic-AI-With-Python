@@ -116,3 +116,9 @@ docker compose up -d
 Isse valkey aur qdrant container port 6379 aur 6333 par run ho jayenge.
 
 
+<br>
+<br>
+
+### Note
+
+Maine is slide ko aage continue nahi kiya kyuki tutor ne bohot complex kar diya tha aur mere code mein errors aa rhe the isliye. Maine isko yahi pe skip kar diya.
