@@ -83,5 +83,7 @@ print(response.choices[0].message.content)
 
 Output:
 ```
-Two software developers work diligently in a modern, brightly lit office. Seated in ergonomic chairs, they focus intensely on multiple monitors displaying complex code. The clean workspace, complete with a lush green plant and minimalist wall art, reflects a professional and productive atmosphere where technology and innovation meet.
+Two software developers work diligently in a modern, brightly lit office. Seated in ergonomic chairs,
+they focus intensely on multiple monitors displaying complex code. The clean workspace,
+complete with a lush green plant and minimalist wall art, reflects a professional and productive atmosphere where technology and innovation meet.
 ```
