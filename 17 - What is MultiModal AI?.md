@@ -48,3 +48,40 @@ Jaise:
 
 Yahi multimodal AI hai.
 
+
+<br>
+<br>
+
+## Implementing Multi-modal AI using gemini model
+
+Is implementation mein hum ek website se image ka url copy karke model ko denge aur model us image ko text form mein explain karega ki exactly image kya hai.
+
+Mai ```pexels.com``` website par gaya aur wha se ek image ki url copy karli aur model ko dedi.
+
+```main.py```:
+```
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="XXXX",
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
+
+
+
+response = client.chat.completions.create(
+        model="gemini-3-flash-preview", 
+        messages=[
+            {"role": "user", "content": [{"type": "text", "text": "Generate a caption for this image in about 50 words."}, 
+            {"type": "image_url", "image_url": {"url": "https://images.pexels.com/photos/7988116/pexels-photo-7988116.jpeg"}}]}
+        ]
+    )
+
+
+print(response.choices[0].message.content)
+```
+
+Output:
+```
+Two software developers work diligently in a modern, brightly lit office. Seated in ergonomic chairs, they focus intensely on multiple monitors displaying complex code. The clean workspace, complete with a lush green plant and minimalist wall art, reflects a professional and productive atmosphere where technology and innovation meet.
+```
