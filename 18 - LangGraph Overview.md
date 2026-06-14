@@ -255,3 +255,14 @@ Start   Check Security Group
 Notice:
 - AI har step pe decision le raha hai.
 - Isi wajah se iska naam Graph hai.
+
+<br>
+<br>
+<br>
+
+## Installing the LangGraph
+
+Command:
+```
+pip install -U langgraph
+```
