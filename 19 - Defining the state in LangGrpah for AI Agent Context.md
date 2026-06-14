@@ -2,7 +2,9 @@
 
 Is slide mein hum LangGraph ke through AI agent ke liye ek state define karenge, jise nodes used karenge.
 
-State ek shared memory hoti hai jisko nodes use karte hain aur ek-dusre ko paas karte hain.
+State ek piece of data hota hai jo hum graph ko as an input dete hain.
+
+State ek shared memory hoti hai jo sabhi Nodes ke beech pass hoti hai. Har node isme se purani info padh sakta hai aur apni nayi info add kar sakta hai.
 
 <br>
 
