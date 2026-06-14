@@ -266,3 +266,19 @@ Command:
 ```
 pip install -U langgraph
 ```
+
+<br>
+<br>
+<br>
+
+### Implementing the sample LangGraph
+
+Aage ki slides mein hum ek simple langGraph implement karenge.
+
+Implement karne ke liye ye flow hona jaruri hai:
+- Defining the State.
+- Defining the Nodes.
+- Adding Nodes to the Graph.
+- Connecting Nodes throuhg Edges.
+- Compiling the Graph.
+- Invoke the Graph.
