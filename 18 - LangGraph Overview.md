@@ -62,15 +62,26 @@ Yahan AI ek graph mein move kar raha hai. Jahan multiple decision lene pad rhe h
 
 <br>
 
+### Componenets of Lang graph.
+
 LangGraph ek framework hai jo AI workflows ko graph structure mein represent karta hai.
 
 Graph = Nodes + Connections.
 
-Graph mein do cheeze hoti hain:
+LangGraph mein 3 components hote hain:
+- Nodes.
+- Edges.
+- State.
+
+<br>
 
 **1. Nodes**:
 
+Nodes function hote hain, jo kuch action perform karte hain. Jaise, ek function user input lena, dusra function kisi tool ko call karna.
+
 Nodes = Work karne wale components.
+
+Tumko in nodes ko edges ke through apas mein connect karna hote hai.
 
 Example:
 ```
@@ -81,7 +92,11 @@ Tool Node
 Human Approval Node
 ```
 
+<br>
+
 **2. Edges**:
+
+Edges are the connection between the nodes.
 
 Edges decide karte hain ki next node kaun sa execute hoga.
 
@@ -102,6 +117,47 @@ Yes     No
  ↓       ↓
 Retry   Finish
 ```
+
+<br>
+
+**3. State**:
+
+State ek piece of data hota hai jo hum graph ko as an input dete hain.
+
+State ek shared memory hoti hai jo sabhi Nodes ke beech pass hoti hai. Har node isme se purani info padh sakta hai aur apni nayi info add kar sakta hai.
+
+Jab aapka AI workflow chal raha hota hai, toh ek node se dusre node par jo bhi data ya information pass hoti hai, use hum State kehte hain. Graph ke andar jitne bhi Nodes (Python functions ya AI agents) hote hain, woh sab isi ek common State ko padhte (read) aur badalte (update) hain.
+
+Example:
+
+Maan lijiye user ne pucha: "Weather in Delhi".
+
+Start: State khali hai, bas user_query: "Weather in Delhi" save hai.
+```
+state{
+user_query: Weather in Delhi.
+}
+```
+
+Node 1 (Search Agent): Yeh State se query padhta hai. Web search karke data lata hai aur State ko update kar deta hai:
+```
+state{
+user_query: [Weather in Delhi],
+search_results: ["Delhi weather is 32°C and sunny"]
+}
+```
+
+Node 2 (Writer Agent): Yeh State mein se search_results ko uthata hai, ek accha sa reply banta hai, aur State mein jod deta hai:
+```
+state{
+user_query: [Weather in Delhi],
+search_results: ["Delhi weather is 32°C and sunny"],
+final_answer: ["Hello! Delhi mein aaj dhoop hai aur temperature 32°C hai.]
+}
+```
+
+End: User ko final_answer dikha diya jata hai.
+
 
 <br>
 <br>
@@ -199,4 +255,3 @@ Start   Check Security Group
 Notice:
 - AI har step pe decision le raha hai.
 - Isi wajah se iska naam Graph hai.
-
